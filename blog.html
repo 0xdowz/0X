@@ -9,23 +9,28 @@
 </head>
 <body>
     <nav class="main-nav">
-        <a href="index.html" class="logo">&lt;/0xjboor&gt;</a>
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <ul class="nav-menu">
-            <li><a href="index.html#whoami">Home</a></li>
-            <li><a href="index.html#experience">Experience</a></li>
-            <li><a href="blog.html" class="active">Blog</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+        <a href="index.html" class="logo">&lt;/<span class="typed-text"></span>&gt;</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html#whoami">Home</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
     <div class="blog-section">
+        <video autoplay loop muted playsinline id="matrix-bg">
+            <source src="matrix.webm" type="video/webm">
+        </video>
         <div class="blog-intro">
-            <h1 class="blog-title">مدونتي الشخصية</h1>
+            <h1 class="blog-title">مدونـتي الشخصية</h1>
             <div class="blog-content-rtl">
-                <p class="blog-description animate-on-scroll">
+                <p class="blog-description blog-description-ltr animate-on-scroll">
                     هنا أكتب مقالات واقتباسات تروي جزءاً من نفسي وتعبر عن بعض من أفكاري
                 </p>
                 <p class="blog-description animate-on-scroll">
@@ -40,10 +45,10 @@
     <footer>
         <div class="footer-content">
             <div class="social-links animate-on-scroll">
-                <a href="#" class="btn"><i class="fab fa-github"></i></a>
-                <a href="#" class="btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="btn"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="btn"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/0xdowz" class="btn"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/0xjboor" class="btn"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/jbo0r" class="btn"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:anasamuniraljboor@gmail.com" class="btn"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="animate-on-scroll">&copy; 2025. All rights reserved.</p>
         </div>
@@ -51,4 +56,4 @@
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
