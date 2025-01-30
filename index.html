@@ -6,49 +6,67 @@
     <title>Anas Al-Jboor | 0xjboor</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 </head>
 <body>
     <div id="mouse-blob"></div>
     
     <nav class="main-nav">
-        <a href="#" class="logo">&lt;/0xjboor&gt;</a>
-        <button class="menu-toggle" aria-label="Toggle menu">
-            <i class="fas fa-bars"></i>
-        </button>
-        <ul class="nav-menu">
-            <li><a href="#whoami">Home</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <a href="#" class="logo">&lt;/<span class="typed-text"></span>&gt;</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="#whoami" class="active">Home</a>
+            <a href="#experience">Experience</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
     <section id="whoami">
-        <video autoplay loop muted playsinline id="matrix-bg">
-            <source src="matrix.webm" type="video/webm">
-        </video>
         <div class="content animate-on-scroll">
             <h1 class="animate-text"><span>WHOAMI?</span></h1>
             <p class="highlight animate-on-scroll">A <strong>Jordanian</strong> who designs, codes, and breaks, When systems fal,</p>
             <p class="aspiration animate-on-scroll">Im the one who <strong>Knocks.</strong></p>
+            <a href="#contact" class="contact-btn btn animate-on-scroll">CONTACT</a>
+            <div class="social-links-intro animate-on-scroll">
+                <a href="https://github.com/0xdowz" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+                <a href="https://twitter.com/0xjboor" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-twitter"></i></span>
+                </a>
+                <a href="https://instagram.com/jbo0r" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-instagram"></i></span>
+                </a>
+                <a href="https://www.behance.net/48989e00" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-behance"></i></span>
+                </a>
+                <a href="mailto:anasamuniraljboor@gmail.com">
+                    <span><i class="fas fa-envelope"></i></span>
+                </a>
+            </div>
         </div>
     </section>
 
     <div class="container">
         <section id="experience" class="section animate-on-scroll">
             <h2 class="animate-text">EXPERIENCE</h2>
-            <p class="section-subtitle animate-on-scroll">A journey of continuous learning and growth</p>
+            <p class="section-subtitle animate-on-scroll">A journey of endless learning, growth, and the occasional facepalm moments.</p>
             
             <div class="experience-grid">
                 <div class="experience-card animate-on-scroll">
-                    <h3>Security Researcher</h3>
-                    <p class="duration">2020 - Present</p>
+                    <h3>Graphic Designer</h3>
+                    <p class="duration">2021 - Present</p>
                     <p class="description">Conducting security assessments and vulnerability research for various organizations.</p>
                 </div>
                 
                 <div class="experience-card animate-on-scroll">
-                    <h3>Bug Bounty Hunter</h3>
-                    <p class="duration">2019 - Present</p>
+                    <h3>Data Analyst</h3>
+                    <p class="duration">2024 - Present</p>
                     <p class="description">Active participant in bug bounty programs, identifying and reporting security vulnerabilities.</p>
                 </div>
                 
@@ -60,13 +78,202 @@
             </div>
         </section>
 
+        <section id="skills" class="section animate-on-scroll">
+            <h2 class="animate-text">SKILLS</h2>
+            <p class="section-subtitle animate-on-scroll">A collection of technical and design skills I've mastered.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category animate-on-scroll">
+                    <h3><i class="fas fa-code"></i> Programming</h3>
+                    <ul class="skills-list">
+                        <li><i class="devicon-html5-plain colored"></i> HTML5 & CSS3</li>
+                        <li><i class="devicon-javascript-plain colored"></i> JavaScript (ES6+)</li>
+                        <li><i class="devicon-python-plain colored"></i> Python</li>
+                        <li><i class="devicon-php-plain colored"></i> PHP</li>
+                        <li><i class="devicon-mysql-plain colored"></i> SQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category animate-on-scroll">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <ul class="skills-list">
+                        <li><i class="fas fa-spider"></i> Web Security Testing</li>
+                        <li><i class="fas fa-sitemap"></i> Network Security</li>
+                        <li><i class="fas fa-shield-virus"></i> Malware Analysis</li>
+                        <li><i class="fas fa-mask"></i> Penetration Testing</li>
+                        <li><i class="fas fa-microscope"></i> Security Research</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category animate-on-scroll">
+                    <h3><i class="fas fa-paint-brush"></i> Design</h3>
+                    <ul class="skills-list">
+                        <li><i class="devicon-figma-plain colored"></i> UI/UX Design</li>
+                        <li><i class="devicon-photoshop-plain colored"></i> Adobe Photoshop</li>
+                        <li><i class="devicon-illustrator-plain colored"></i> Adobe Illustrator</li>
+                        <li><i class="fas fa-pen-fancy"></i> Canva</li>
+                        <li><i class="fas fa-photo-video"></i> Motion Graphics</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category animate-on-scroll">
+                    <h3><i class="fas fa-database"></i> Data Analysis</h3>
+                    <ul class="skills-list">
+                        <li><i class="fas fa-chart-bar"></i> Data Visualization</li>
+                        <li><i class="fas fa-chart-line"></i> Statistical Analysis</li>
+                        <li><i class="fas fa-broom"></i> Data Cleaning</li>
+                        <li><i class="fas fa-chart-pie"></i> Power BI</li>
+                        <li><i class="fas fa-table"></i> Excel Advanced</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="tools" class="section animate-on-scroll">
+            <h2 class="animate-text">TOOLS</h2>
+            <p class="section-subtitle animate-on-scroll">A collection of tools I use in various fields.</p>
+            
+            <div class="tools-grid">
+                <div class="tool-category animate-on-scroll">
+                    <h3><i class="fas fa-database"></i> Data</h3>
+                    <ul class="tools-list">
+                        <li><i class="fas fa-chart-pie"></i> Power BI</li>
+                        <li><i class="fas fa-chart-line"></i> Tableau</li>
+                        <li><i class="fas fa-file-excel"></i> Excel</li>
+                        <li><i class="devicon-mysql-plain colored"></i> SQL Server</li>
+                        <li><i class="fab fa-python"></i> Python Pandas</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-category animate-on-scroll">
+                    <h3><i class="fas fa-code"></i> Development</h3>
+                    <ul class="tools-list">
+                        <li><i class="devicon-vscode-plain colored"></i> VS Code</li>
+                        <li><i class="devicon-github-original colored"></i> Git & GitHub</li>
+                        <li><i class="devicon-docker-plain colored"></i> Docker</li>
+                        <li><i class="devicon-chrome-plain colored"></i> Postman</li>
+                        <li><i class="devicon-linux-plain colored"></i> Linux</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-category animate-on-scroll">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <ul class="tools-list">
+                        <li><i class="fas fa-bug-slash"></i> Burp Suite Pro</li>
+                        <li><i class="fas fa-network-wired"></i> Nmap</li>
+                        <li><i class="fas fa-wifi"></i> Wireshark</li>
+                        <li><i class="fas fa-robot"></i> Metasploit</li>
+                        <li><i class="fas fa-user-ninja"></i> Cobalt Strike</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-category animate-on-scroll">
+                    <h3><i class="fas fa-paint-brush"></i> Design</h3>
+                    <ul class="tools-list">
+                        <li><i class="devicon-aftereffects-plain colored"></i> After Effects</li>
+                        <li><i class="devicon-photoshop-plain colored"></i> Photoshop</li>
+                        <li><i class="devicon-premierepro-plain colored"></i> Premiere</li>
+                        <li><i class="devicon-illustrator-plain colored"></i> Illustrator</li>
+                        <li><i class="devicon-figma-plain colored"></i> Figma</li>
+                        <li><i class="devicon-canva-original colored"></i> Canva</li>
+                    </ul>
+                </div>
+                
+                <div class="tool-category animate-on-scroll">
+                    <h3><i class="fas fa-server"></i> Infrastructure</h3>
+                    <ul class="tools-list">
+                        <li><i class="fas fa-desktop"></i> VMware</li>
+                        <li><i class="fas fa-cube"></i> VirtualBox</li>
+                        <li><i class="fab fa-aws"></i> AWS</li>
+                        <li><i class="devicon-azure-plain colored"></i> Azure</li>
+                        <li><i class="devicon-digitalocean-plain colored"></i> Digital Ocean</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="programming-languages" class="section animate-on-scroll">
+            <h2 class="animate-text">PROGRAMMING LANGUAGES</h2>
+            <p class="section-subtitle animate-on-scroll">A collection of programming languages I've mastered.</p>
+            
+            <div class="lang-grid">
+                <div class="lang-category animate-on-scroll">
+                    <h3><i class="fas fa-code"></i> Web Development</h3>
+                    <ul class="lang-list">
+                        <li><i class="devicon-html5-plain colored"></i> HTML5</li>
+                        <li><i class="devicon-css3-plain colored"></i> CSS3</li>
+                        <li><i class="devicon-javascript-plain colored"></i> JavaScript</li>
+                        <li><i class="devicon-php-plain colored"></i> PHP</li>
+                        <li><i class="devicon-mysql-plain colored"></i> SQL</li>
+                    </ul>
+                </div>
+                
+                <div class="lang-category animate-on-scroll">
+                    <h3><i class="fas fa-terminal"></i> Scripting</h3>
+                    <ul class="lang-list">
+                        <li><i class="devicon-python-plain colored"></i> Python</li>
+                        <li><i class="devicon-bash-plain colored"></i> Bash</li>
+                        <li><i class="devicon-windows8-original colored"></i> PowerShell</li>
+                        <li><i class="devicon-nodejs-plain colored"></i> Node.js</li>
+                    </ul>
+                </div>
+                
+                <div class="lang-category animate-on-scroll">
+                    <h3><i class="fas fa-microchip"></i> Low Level</h3>
+                    <ul class="lang-list">
+                        <li><i class="devicon-c-plain colored"></i> C</li>
+                        <li><i class="devicon-cplusplus-plain colored"></i> C++</li>
+                        <li><i class="fas fa-memory"></i> Assembly</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <section id="certifications" class="section">
             <h2>PROFESSIONAL CERTIFICATIONS</h2>
             <ul class="cert-list">
-                <li><i class="fas fa-certificate"></i> eLearnSecurity Certified Professional Pen-Tester (eCPPT)</li>
-                <li><i class="fas fa-shield-alt"></i> Certified Red Team Professional (CRTP)</li>
-                <li><i class="fas fa-laptop-code"></i> RastaLabs (HTB)</li>
-                <li><i class="fas fa-graduation-cap"></i> TCM Security Training (WPE, PMAT)</li>
+                <li>
+                    <i class="fas fa-certificate"></i>
+                    <div class="cert-content">
+                        <h3>eCPPT</h3>
+                        <p class="cert-description">Advanced penetration testing with focus on real-world scenarios.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="cert-content">
+                        <h3>CRTP</h3>
+                        <p class="cert-description">Active Directory security and advanced Windows attack techniques.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-laptop-code"></i>
+                    <div class="cert-content">
+                        <h3>RastaLabs (HTB)</h3>
+                        <p class="cert-description">Enterprise network penetration testing and attack methodologies.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="cert-content">
+                        <h3>TCM (WPE, PMAT)</h3>
+                        <p class="cert-description">Windows privilege escalation and malware analysis techniques.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-award"></i>
+                    <div class="cert-content">
+                        <h3>Tech for Jobs C1</h3>
+                        <p class="cert-description">data skills like analysis, programming, and professional development to prepare for high-paying tech jobs.</p>
+                    </div>
+                </li>
+                <li>
+                    <i class="fas fa-bug"></i>
+                    <div class="cert-content">
+                        <h3>eJPTv2</h3>
+                        <p class="cert-description">Basic penetration testing with a focus on vulnerability assessment and network analysis.</p>
+                    </div>
+                </li>
             </ul>
         </section>
 
@@ -76,50 +283,50 @@
             <div class="lang-levels">
                 <div class="lang-card">
                     <i class="fas fa-language"></i>
-                    <span class="level">B1 - B2</span>
-                    <span class="lang-name">English</span>
+                    <span class="level">English</span>
+                    <span class="lang-name">B1 - B2</span>
                 </div>
                 <div class="lang-card">
                     <i class="fas fa-language"></i>
-                    <span class="level">...</span>
-                    <span class="lang-name">Italian</span>
+                    <span class="level">Italian</span>
+                    <span class="lang-name">...</span>
                 </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section animate-on-scroll">
-            <h2 class="animate-text">CONNECT</h2>
-            <p class="section-subtitle animate-on-scroll">Have an inquiry? Let's talk!</p>
-            
-            <div class="contact-form">
-                <form method="POST" class="animate-on-scroll">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
             </div>
         </section>
     </div>
 
     <footer>
         <div class="footer-content">
-            <div class="social-links animate-on-scroll">
-                <a href="#" class="btn"><i class="fab fa-github"></i></a>
-                <a href="#" class="btn"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="btn"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="btn"><i class="fas fa-envelope"></i></a>
+            <div class="social-links">
+                <a href="https://github.com/0xjboor" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+                <a href="https://twitter.com/0xjboor" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-twitter"></i></span>
+                </a>
+                <a href="https://www.linkedin.com/in/0xjboor" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-linkedin-in"></i></span>
+                </a>
+                <a href="https://www.behance.net/48989e00" target="_blank" rel="noopener noreferrer">
+                    <span><i class="fab fa-behance"></i></span>
+                </a>
+                <a href="mailto:anasamuniraljboor@gmail.com">
+                    <span><i class="fas fa-envelope"></i></span>
+                </a>
             </div>
-            <p class="animate-on-scroll">&copy; 2025. All rights reserved.</p>
+            <p class="animate-on-scroll">&copy; 2025. Made with ❤️</p>
         </div>
     </footer>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" id="path">
+            <path d="M22,22 L2,22 C2,11 11,2 22,2 C33,2 42,11 42,22"></path>
+        </symbol>
+    </svg>
 
     <script src="script.js"></script>
+    <video autoplay loop muted playsinline id="matrix-bg">
+        <source src="matrix.webm" type="video/webm">
+    </video>
 </body>
 </html>
