@@ -50,12 +50,138 @@ const handleTextEffect = () => {
     });
 };
 
-// تفعيل كل التأثيرات
-document.addEventListener('DOMContentLoaded', () => {
+// تفعيل قائمة الهامبرجر
+const handleMenuToggle = () => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+};
+
+// Typing Effect
+class TypeWriter {
+    constructor(element, words, wait = 3000) {
+        this.element = element;
+        this.words = words;
+        this.txt = '';
+        this.wordIndex = 0;
+        this.wait = parseInt(wait, 10);
+        this.type();
+        this.isDeleting = false;
+    }
+
+    type() {
+        // Current index of word
+        const current = this.wordIndex % this.words.length;
+        // Get full text of current word
+        const fullTxt = this.words[current];
+
+        // Check if deleting
+        if (this.isDeleting) {
+            // Remove char
+            this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+            // Add char
+            this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+
+        // Insert txt into element
+        this.element.innerHTML = this.txt;
+
+        // Initial Type Speed
+        let typeSpeed = 100;
+
+        if (this.isDeleting) {
+            typeSpeed /= 2;
+        }
+
+        // If word is complete
+        if (!this.isDeleting && this.txt === fullTxt) {
+            // Make pause at end
+            typeSpeed = this.wait;
+            // Set delete to true
+            this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+            this.isDeleting = false;
+            // Move to next word
+            this.wordIndex++;
+            // Pause before start typing
+            typeSpeed = 500;
+        }
+
+        setTimeout(() => this.type(), typeSpeed);
+    }
+}
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navLinksA = document.querySelectorAll('.nav-links a');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    
+    // Animate links
+    navLinksA.forEach((link, index) => {
+        if (link.style.animation) {
+            link.style.animation = '';
+        } else {
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
+    });
+});
+
+// Close menu when clicking a link
+navLinksA.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+        
+        navLinksA.forEach(link => {
+            link.style.animation = '';
+        });
+    });
+});
+
+// Init On DOM Load
+document.addEventListener('DOMContentLoaded', init);
+
+// Init App
+function init() {
     observeElements();
     handleNavbar();
     handleTextEffect();
-});
+    handleMenuToggle();
+
+    const txtElement = document.querySelector('.typed-text');
+    const words = ['0xjboor', 'Anas', 'jboor'];
+    const wait = 3000;
+
+    // Init TypeWriter
+    new TypeWriter(txtElement, words, wait);
+}
 
 // تأثير النقر على الأزرار
 document.querySelectorAll('.btn').forEach(button => {
@@ -72,46 +198,18 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
-// التحكم في القائمة المنسدلة
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-let isMenuOpen = false;
-
-const toggleMenu = () => {
-    isMenuOpen = !isMenuOpen;
-    navMenu.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-    
-    // تأثير ظهور العناصر بشكل متتالي
-    const menuItems = navMenu.querySelectorAll('li');
-    menuItems.forEach((item, index) => {
-        if (isMenuOpen) {
-            item.style.transitionDelay = `${0.1 * index}s`;
-        } else {
-            item.style.transitionDelay = '0s';
-        }
-    });
-};
-
-menuToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleMenu();
-});
-
-// إغلاق القائمة عند النقر على أي رابط
-document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (isMenuOpen) {
-            toggleMenu();
-        }
-    });
-});
-
-// إغلاق القائمة عند النقر خارجها
+// Close menu when clicking outside
 document.addEventListener('click', (e) => {
-    if (isMenuOpen && !menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-        toggleMenu();
+    if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('active');
     }
+});
+
+// Close menu when clicking a link
+navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+    });
 });
 
 // إغلاق القائمة عند التمرير
