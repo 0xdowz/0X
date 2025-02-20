@@ -1,52 +1,66 @@
-// تأثير ظهور العناصر عند التمرير
+// Optimized scroll animation with performance improvements
 const observeElements = () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target); // Stop observing once animation is triggered
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.1,
+        rootMargin: '50px' // Preload animations before elements enter viewport
+    });
 
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+    const elements = document.querySelectorAll('.animate-on-scroll');
+    elements.forEach(el => observer.observe(el));
 };
 
-// تأثير تحريك البار العلوي
+// Optimized navbar scroll handling with throttling
 const handleNavbar = () => {
     const nav = document.querySelector('.main-nav');
     let lastScroll = 0;
+    let ticking = false;
 
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll <= 0) {
-            nav.classList.remove('scroll-up');
-            return;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScroll = window.pageYOffset;
+                
+                if (currentScroll <= 0) {
+                    nav.classList.remove('scroll-up');
+                } else if (currentScroll > lastScroll && !nav.classList.contains('scroll-down')) {
+                    nav.classList.remove('scroll-up');
+                    nav.classList.add('scroll-down');
+                } else if (currentScroll < lastScroll && nav.classList.contains('scroll-down')) {
+                    nav.classList.remove('scroll-down');
+                    nav.classList.add('scroll-up');
+                }
+                
+                lastScroll = currentScroll;
+                ticking = false;
+            });
+            ticking = true;
         }
-        
-        if (currentScroll > lastScroll && !nav.classList.contains('scroll-down')) {
-            nav.classList.remove('scroll-up');
-            nav.classList.add('scroll-down');
-        } else if (currentScroll < lastScroll && nav.classList.contains('scroll-down')) {
-            nav.classList.remove('scroll-down');
-            nav.classList.add('scroll-up');
-        }
-        lastScroll = currentScroll;
-    });
+    }, { passive: true });
 };
 
-// تأثير تحريك النص
+// Optimized text animation with fragment and reduced reflows
 const handleTextEffect = () => {
     const titles = document.querySelectorAll('.animate-text');
     titles.forEach(title => {
         const text = title.textContent;
+        const fragment = document.createDocumentFragment();
         title.textContent = '';
+        
         [...text].forEach((char, i) => {
             const span = document.createElement('span');
             span.textContent = char;
             span.style.animationDelay = `${i * 0.1}s`;
-            title.appendChild(span);
+            fragment.appendChild(span);
         });
+        
+        title.appendChild(fragment);
     });
 };
 
@@ -198,26 +212,55 @@ document.querySelectorAll('.btn').forEach(button => {
     });
 });
 
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-        navMenu.classList.remove('active');
+// Optimized menu handling with debouncing
+let isMenuOpen = false;
+let menuToggleTimeout;
+
+const toggleMenu = () => {
+    if (menuToggleTimeout) {
+        clearTimeout(menuToggleTimeout);
     }
-});
+    
+    menuToggleTimeout = setTimeout(() => {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (menuToggle && navMenu) {
+            isMenuOpen = !isMenuOpen;
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        }
+    }, 50);
+};
 
-// Close menu when clicking a link
-navMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-    });
-});
-
-// إغلاق القائمة عند التمرير
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    if (currentScroll > lastScroll && isMenuOpen) {
+// Event delegation for menu-related clicks
+document.addEventListener('click', (e) => {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (e.target.closest('.menu-toggle')) {
+        toggleMenu();
+    } else if (isMenuOpen && !e.target.closest('.nav-menu')) {
+        toggleMenu();
+    } else if (e.target.closest('.nav-menu a')) {
         toggleMenu();
     }
-    lastScroll = currentScroll;
-}); 
+}, { passive: true });
+
+// Optimized scroll-based menu closing
+let lastScrollY = window.scrollY;
+let scrollTimeout;
+
+window.addEventListener('scroll', () => {
+    if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+    }
+    
+    scrollTimeout = setTimeout(() => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && isMenuOpen) {
+            toggleMenu();
+        }
+        lastScrollY = currentScrollY;
+    }, 150);
+}, { passive: true });
