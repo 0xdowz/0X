@@ -3,53 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | 0xjboor</title>
+    <meta name="description" content="Get in touch with Anas Al-Jboor. Contact me for collaborations, questions, or just to say hello!">
+    <meta name="keywords" content="contact, Anas Al-Jboor, web development, security, design">
+    <meta name="author" content="Anas Al-Jboor">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Contact | Anas Al-Jboor">
+    <meta property="og:description" content="Get in touch with Anas Al-Jboor. Contact me for collaborations, questions, or just to say hello!">
+    <meta property="og:type" content="website">
+    <title>Contact | Anas Al-Jboor</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://www.google.com">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Anas Al-Jboor",
+      "description": "Get in touch with Anas Al-Jboor for collaborations, questions, or just to say hello!"
+    }
+    </script>
 </head>
 <body>
-    <nav class="main-nav">
-        <a href="index.html" class="logo">&lt;/<span class="typed-text"></span>&gt;</a>
+    <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="logo" aria-label="Home">&lt;/<span class="typed-text"></span>&gt;</a>
         <div class="nav-links">
             <a href="index.html">HOME</a>
             <a href="blog.html">BLOG</a>
-            <a href="contact.html">CONTACT</a>
+            <a href="contact.html" aria-current="page">CONTACT</a>
         </div>
-        <div class="hamburger">
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
     </nav>
 
-    <div class="blog-section">
-        <video autoplay loop muted playsinline id="matrix-bg">
-            <source src="matrix.webm" type="video/webm">
-        </video>
-        <div class="blog-intro">
-            <h1 class="blog-title">مدونـتي الشخصية</h1>
-            <div class="blog-content-rtl">
-                <p class="blog-description blog-description-ltr animate-on-scroll">
-                    هنا أكتب مقالات واقتباسات تروي جزءاً من نفسي وتعبر عن بعض من أفكاري
-                </p>
-                <p class="blog-description animate-on-scroll">
-                    كل ذلك <span class="highlight">باللغة العربية</span>، بعيداً عن لغة الموقع التي تركز على الإنجليزية، لتبقى هذه المساحة متنفساً لروح هويتي في عالم رقمي يتحدث لغة أخرى
-                </p>
+    <main>
+        <section class="contact-section" aria-label="Contact form">
+            <video autoplay loop muted playsinline id="matrix-bg" aria-hidden="true">
+                <source src="matrix.webm" type="video/webm">
+            </video>
+            <div class="container">
+                <h1>Get in Touch</h1>
+                <div class="contact-content">
+                    <div class="contact-info glass-effect">
+                        <h2>Let's Connect</h2>
+                        <p>Feel free to reach out for collaborations, questions, or just to say hello! I'll get back to you as soon as possible.</p>
+                        <div class="social-links" aria-label="Social media links">
+                            <a href="https://github.com/0xdowz" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://twitter.com/0xjboor" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://instagram.com/jbo0r" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="mailto:anasamuniraljboor@gmail.com" aria-label="Email me">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="contact-form glass-effect">
+                        <form id="messageForm" action="https://formspree.io/f/xbldbdbd" method="POST" onsubmit="handleFormSubmit(event)" aria-label="Contact form">
+                            <input type="hidden" name="_subject" value="New Contact Form Submission">
+                            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required 
+                                    pattern="[A-Za-z0-9\s]{2,50}" 
+                                    title="Name must be between 2 and 50 characters and contain only letters, numbers and spaces"
+                                    aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required 
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
+                                    title="Please enter a valid email address"
+                                    aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required 
+                                    maxlength="100" 
+                                    title="Subject must not exceed 100 characters"
+                                    aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required 
+                                    minlength="10" maxlength="1000" 
+                                    title="Message must be between 10 and 1000 characters"
+                                    aria-required="true"></textarea>
+                            </div>
+                            <div id="formStatus" class="form-status" role="alert" aria-live="polite" style="display: none;"></div>
+                            <button type="submit" class="submit-btn btn">Send Message <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <p class="archived animate-on-scroll">مؤرشفة مؤقتاً...</p>
-    </div>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
-            <div class="social-links animate-on-scroll">
-                <a href="https://github.com/0xdowz" class="btn"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/0xjboor" class="btn"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com/jbo0r" class="btn"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:anasamuniraljboor@gmail.com" class="btn"><i class="fas fa-envelope"></i></a>
-            </div>
-            <p class="animate-on-scroll">&copy; 2025. All rights reserved.</p>
+            <p class="animate-on-scroll">&copy; 2025. Made With ❤️</p>
         </div>
     </footer>
 

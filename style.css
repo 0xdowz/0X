@@ -1,7 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Shadows+Into+Light&family=Reem+Kufi:wght@400;500;600;700&family=Rakkas&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@200..1000&family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Shadows+Into+Light&family=Reem+Kufi:wght@400;500;600;700&family=Rakkas&display=swap&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%20%21%22%23%24%25%26%27%28%29%2A%2B%2C%2D%2E%2F%3A%3B%3C%3D%3E%3F%40%5B%5C%5D%5E%5F%60%7B%7C%7D%7E');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@200..1000&family=Luckiest+Guy&display=swap&text=%D8%A7%D8%A8%D8%AA%D8%AB%D8%AC%D8%AD%D8%AE%D8%AF%D8%B0%D8%B1%D8%B2%D8%B3%D8%B4%D8%B5%D8%B6%D8%B7%D8%B8%D8%B9%D8%BA%D9%81%D9%82%D9%83%D9%84%D9%85%D9%86%D9%87%D9%88%D9%8A%D8%A1%D8%A2%D8%A3%D8%A4%D8%A5%D8%A6%D8%A9%D8%AA%D8%AB%D8%AC%D8%AD%D8%AE%D8%AF%D8%B0%D8%B1%D8%B2%D8%B3%D8%B4%D8%B5%D8%B6%D8%B7%D8%B8%D8%B9%D8%BA%D9%81%D9%82%D9%83%D9%84%D9%85%D9%86%D9%87%D9%88%D9%8A%D8%A1%D8%A2%D8%A3%D8%A4%D8%A5%D8%A6%D8%A9');
 
 :root {
+    scroll-behavior: smooth;
+    --transition-duration: 0.3s;
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
     --bg-color: #000000;
     --foreground: #ffffff;
     --primary: #64ffda;
@@ -16,6 +19,7 @@
     --font-arabic-body: 'Noto Naskh Arabic', serif;
     --font-arabic-decorative: 'Rakkas', cursive;
     --font-decorative: 'Shadows Into Light', cursive;
+    --noise-opacity: 0.4%;
 }
 
 * {
@@ -24,16 +28,105 @@
     box-sizing: border-box;
 }
 
+/* Notification System Styles */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.notification {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    min-width: 300px;
+    padding: 15px;
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-left: 4px solid var(--primary);
+}
+
+.notification.error {
+    border-left: 4px solid var(--accent);
+}
+
+.notification-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--foreground);
+}
+
+.notification-content i {
+    font-size: 1.25rem;
+}
+
+.notification.success i {
+    color: var(--primary);
+}
+
+.notification.error i {
+    color: var(--accent);
+}
+
+.notification-content p {
+    margin: 0;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        scroll-behavior: auto;
+        --transition-duration: 0s;
+    }
+}
+
 body {
     font-family: var(--font-secondary);
     background-color: var(--bg-color);
     color: var(--foreground);
-    line-height: 0.6;
+    line-height: 1.8;
     text-align: left;
+    direction: ltr;
     font-size: clamp(0.875rem, 2vw, 1rem);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    z-index: 9999;
+    opacity: var(--noise-opacity);
+    mix-blend-mode: overlay;
 }
 
 .main-nav {
@@ -41,14 +134,14 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(10, 10, 10, 0.85);
-    padding: clamp(1.5rem, 1.5vw, 1rem) clamp(0.75rem, 2vw, 2rem);
+    background: rgba(10, 10, 10, 0);
+    padding: clamp(0.5rem, 0.5vw, 1rem) clamp(2rem, 4vw, 4rem);
     display: flex;
     justify-content: flex-start;
     align-items: center;
     z-index: 1000;
-    backdrop-filter: blur(10px) saturate(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-top: none;
     box-shadow: 
@@ -94,7 +187,7 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: clamp(2rem, 4vw, 3rem);
     margin-left: auto;
     align-items: center;
     position: relative;
@@ -115,18 +208,25 @@ body {
 }
 
 .nav-links a {
+    position: relative;
+    overflow: hidden;
+    transition: color var(--transition-duration) var(--transition-timing),
+                background var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing);
+    will-change: transform;
     color: var(--foreground);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     font-weight: 400;
     letter-spacing: 0.5px;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-family: var(--font-main);
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border: 1px solid transparent;
     border-radius: 4px;
     position: relative;
     z-index: 1;
+    backdrop-filter: blur(5px);
 }
 
 .nav-links a:hover {
@@ -168,12 +268,24 @@ body {
     }
 
     .nav-links a {
+    position: relative;
+    overflow: hidden;
+    transition: color var(--transition-duration) var(--transition-timing),
+                background var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing);
+    will-change: transform;
         width: 100%;
         text-align: center;
         padding: 0.8rem;
     }
 
     .nav-links a {
+    position: relative;
+    overflow: hidden;
+    transition: color var(--transition-duration) var(--transition-timing),
+                background var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing);
+    will-change: transform;
         padding: 0.8rem 2rem;
     }
 
@@ -202,7 +314,7 @@ body {
 
     .highlight, .aspiration {
         font-size: clamp(1rem, 4vw, 1.2rem);
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     .contact-form {
@@ -217,21 +329,22 @@ body {
 }
 
 .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
     position: relative;
     z-index: 0;
-    margin-top: 0;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .section {
-    margin-bottom: clamp(5rem, 8vw, 10rem);
+    margin-bottom: 6rem;
+    padding: 2rem 0;
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease forwards;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     position: relative;
-    padding: clamp(4rem, 6vw, 8rem) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .section:last-child {
@@ -257,13 +370,15 @@ body {
 }
 
 .section h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: 2.5rem;
     color: var(--primary);
-    margin-bottom: clamp(0.8rem, 2vw, 1rem);
+    margin-bottom: 2rem;
     text-transform: uppercase;
     letter-spacing: -0.03em;
     position: relative;
+    text-align: center;
     display: inline-block;
+    line-height: 1.4;
 }
 
 .section h2::after {
@@ -278,11 +393,15 @@ body {
 }
 
 .section-subtitle {
+    text-align: left;
+    direction: ltr;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.2rem;
     color: var(--secondary);
-    font-size: 1.3rem;
-    margin-bottom: 3rem;
     font-family: var(--font-secondary);
     opacity: 0.9;
+    line-height: 1.8;
 }
 
 h1, h2 {
@@ -308,8 +427,8 @@ h2 {
 .highlight, .aspiration {
     font-size: 1.6rem;
     color: var(--secondary);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+    margin-bottom: 2rem;
+    line-height: 1.8;
     letter-spacing: -0.01em;
     font-family: var(--font-secondary);
 }
@@ -324,22 +443,30 @@ h2 {
 
 .experience-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
-    gap: clamp(1.5rem, 3vw, 2rem);
-    margin-top: clamp(2rem, 4vw, 3rem);
-    padding: 0 clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+    gap: clamp(2rem, 4vw, 3rem);
+    margin-top: clamp(3rem, 5vw, 4rem);
+    padding: 0 clamp(1.5rem, 4vw, 3rem);
 }
 
 .experience-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: clamp(1.5rem, 4vw, 2.5rem);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
+    transition: transform 0.4s var(--transition-timing),
+                box-shadow 0.4s var(--transition-timing),
+                border-color 0.4s var(--transition-timing),
+                background-color 0.4s var(--transition-timing);
+    transform-origin: center center;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.5rem;
 }
 
 .experience-card::before {
@@ -364,9 +491,89 @@ h2 {
 }
 
 .experience-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.9),
+                0 0 20px rgba(100, 255, 218, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Languages Section Styles */
+.languages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+.language-card {
+    position: relative;
+    padding: 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.language-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(var(--primary-rgb), 0.03),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.language-card:hover::before {
+    transform: translateX(100%);
+}
+
+.language-card:hover {
     transform: translateY(-8px);
     border-color: var(--primary);
-    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8),
+                0 0 15px rgba(var(--primary-rgb), 0.2);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.language-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.language-content h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.language-content h3 i {
+    font-size: 1.25rem;
+    opacity: 0.9;
+}
+
+.language-content .proficiency {
+    color: var(--secondary);
+    font-size: 1.1rem;
+    margin: 0;
+    font-family: var(--font-mono);
+    opacity: 0.9;
 }
 
 .experience-card h3 {
@@ -383,20 +590,20 @@ h2 {
     color: var(--foreground);
     margin-bottom: clamp(1rem, 2vw, 1.5rem);
     font-size: clamp(0.9rem, 2vw, 1.1rem);
-    line-height: 1.7;
+    line-height: 1.8;
     font-family: var(--font-secondary);
 }
 
 .experience-card ul {
     color: var(--secondary);
     margin-left: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .experience-card ul li {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 .experience-card .date {
@@ -418,7 +625,7 @@ h2 {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -427,6 +634,7 @@ h2 {
     display: flex;
     align-items: flex-start;
     gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .cert-list li i {
@@ -449,19 +657,24 @@ h2 {
 .cert-content h3 {
     color: var(--foreground);
     font-size: clamp(1rem, 2.2vw, 1.2rem);
-    margin-bottom: clamp(0.4rem, 1vw, 0.5rem);
+    margin-bottom: 2rem;
     font-family: var(--font-main);
     font-weight: 500;
     letter-spacing: -0.01em;
+    text-align: left;
+    direction: ltr;
 }
 
 .cert-description {
     font-size: clamp(0.8rem, 1.6vw, 0.9rem);
     color: var(--secondary);
-    line-height: 1.6;
+    line-height: 1.8;
     font-family: var(--font-secondary);
     opacity: 0.8;
     transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    text-align: left;
+    direction: ltr;
 }
 
 .cert-list li:hover {
@@ -485,19 +698,21 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
 .lang-card {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 2.5rem;
+    padding: 1.5rem;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     text-align: center;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    margin: 1.5rem;
 }
 
 .lang-card::before {
@@ -530,7 +745,7 @@ h2 {
 .lang-card i {
     color: var(--primary);
     font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .lang-card .level {
@@ -546,6 +761,8 @@ h2 {
     color: var(--foreground);
     font-size: 1.2rem;
     font-family: var(--font-secondary);
+    text-align: left;
+    direction: ltr;
 }
 
 .social-links {
@@ -810,7 +1027,7 @@ footer p {
 
 @media (max-width: 768px) and (orientation: portrait) {
     #matrix-bg {
-        left: -30%;
+        left: -0%;
         width: 160%;
         height: 100%;
     }
@@ -866,7 +1083,7 @@ footer p {
 
 @media (max-width: 768px) {
     #matrix-bg {
-        opacity: 0.1;
+        opacity: 0.15;
     }
 
     .blog-section {
@@ -876,6 +1093,12 @@ footer p {
 
 @media (max-width: 480px) {
     .experience-card {
+    will-change: transform;
+    transition: transform 0.4s var(--transition-timing),
+                box-shadow 0.4s var(--transition-timing),
+                border-color 0.4s var(--transition-timing),
+                background-color 0.4s var(--transition-timing);
+    transform-origin: center center;
         padding: 1.2rem;
     }
 
@@ -911,6 +1134,7 @@ footer p {
     overflow: hidden;
     background-color: transparent;
     z-index: 1;
+    padding: clamp(8rem, 15vw, 12rem) 0 clamp(4rem, 8vw, 6rem);
 }
 
 .video-background {
@@ -948,9 +1172,10 @@ footer p {
 #whoami .content {
     position: relative;
     z-index: 2;
-    max-width: 800px;
-    padding: 3rem;
-    margin-left: 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-left: 15%;
+    padding: 0;
     background: transparent;
     backdrop-filter: none;
     border-radius: 0;
@@ -960,18 +1185,18 @@ footer p {
 
 #whoami h1 {
     font-family: var(--font-decorative);
-    font-size: clamp(4rem, 10vw, 8rem);
+    font-size: clamp(3rem, 13vw, 8rem);
     color: var(--primary);
-    margin-bottom: 2rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
     font-weight: 400;
     text-shadow: 2px 2px 15px rgba(100, 255, 218, 0.4);
     text-transform: none;
     letter-spacing: 2px;
-    line-height: 1;
+    line-height: 1.3;
     text-align: left;
     transform: none;
     transition: none;
-    display: inline-block;
+    display: block;
     padding: 0.5rem 1rem;
     background: linear-gradient(
         to bottom,
@@ -980,7 +1205,7 @@ footer p {
         rgba(100, 255, 218, 0.1) 60%,
         rgba(100, 255, 218, 0.1) 100%
     );
-    vertical-align: baseline;
+/* Removed vertical-align since it has no effect with display: block */
 }
 
 #whoami h1 span {
@@ -997,10 +1222,14 @@ footer p {
 #whoami .aspiration {
     color: var(--foreground);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    font-size: clamp(1rem, 3vw, 1.25rem);
-    margin-bottom: 1rem;
-    max-width: 500px;
+    font-size: clamp(0.8rem, 1.9vw, 1.2rem);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    max-width: 600px;
     text-align: left;
+    line-height: 2;
+    direction: ltr;
+    white-space: pre-line;
+    word-wrap: break-word;
 }
 
 #whoami .highlight strong,
@@ -1111,7 +1340,7 @@ footer p {
 
 .blog-description {
     font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     line-height: 1.8;
     color: var(--foreground);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
@@ -1148,8 +1377,8 @@ footer p {
 .blog-excerpt {
     color: var(--secondary);
     font-size: 1rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
+    margin-bottom: 2rem;
+    line-height: 1.8;
 }
 
 .blog-link {
@@ -1168,7 +1397,7 @@ footer p {
 .blog-categories {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     flex-wrap: wrap;
 }
 
@@ -1195,7 +1424,7 @@ footer p {
     }
 
     .blog-card {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .blog-categories {
@@ -1220,7 +1449,7 @@ footer p {
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .contact-form input,
@@ -1264,19 +1493,20 @@ footer p {
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover {
-    background: rgba(100, 255, 218, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(100, 255, 218, 0.25);
 }
 
 @media (max-width: 768px) {
@@ -1481,14 +1711,14 @@ footer p {
     font-family: var(--font-mono);
     color: var(--primary);
     font-size: 0.9rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     display: block;
 }
 
 .blog-card-title {
     color: var(--foreground);
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-weight: 600;
     line-height: 1.4;
     font-family: var(--font-main);
@@ -1498,7 +1728,7 @@ footer p {
     color: var(--secondary);
     font-size: 1.1rem;
     margin-bottom: 2rem;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .blog-categories {
@@ -1899,7 +2129,7 @@ footer p {
 @media (max-width: 768px) {
     .main-nav {
         padding: 0.8rem 1.5rem;
-        background: rgba(10, 10, 10, 0.8);
+        background: rgba(10, 10, 10, 0);
     }
     
     .main-nav .logo {
@@ -1968,6 +2198,12 @@ footer p {
     }
 
     .nav-links a {
+    position: relative;
+    overflow: hidden;
+    transition: color var(--transition-duration) var(--transition-timing),
+                background var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing);
+    will-change: transform;
         margin: 1rem 0;
         font-size: 1.2rem;
         opacity: 0;
@@ -2039,7 +2275,8 @@ footer p {
     text-transform: uppercase;
     font-family: var(--font-primary);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    text-align: left;
+    direction: ltr;
     letter-spacing: 2px;
 }
 
@@ -2090,7 +2327,7 @@ footer p {
     font-family: var(--font-secondary);
     font-size: 1.1rem;
     line-height: 1.8;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .contact-form {
@@ -2100,7 +2337,7 @@ footer p {
 }
 
 .contact-form .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .contact-form label {
@@ -2306,22 +2543,23 @@ footer p {
 /* Skills Section Styling */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2.5rem;
-    margin: 4rem auto;
-    max-width: 1200px;
+    margin-top: clamp(3rem, 5vw, 4rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .skill-category {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    margin-bottom: 2rem;
 }
 
 .skill-category:hover {
@@ -2334,7 +2572,7 @@ footer p {
 .skill-category h3 {
     color: var(--primary);
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -2359,7 +2597,7 @@ footer p {
 
 .skills-list li {
     color: var(--foreground);
-    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    font-size: clamp(0.9rem, 1.8vw, 0rem);
     padding: 0.8rem 1rem;
     position: relative;
     font-family: var(--font-secondary);
@@ -2369,6 +2607,10 @@ footer p {
     display: flex;
     align-items: center;
     gap: 0.8rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    text-align: left;
+    direction: ltr;
 }
 
 .skills-list li:hover {
@@ -2395,22 +2637,23 @@ footer p {
 /* Tools Section Styling */
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    margin: 4rem auto;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(2rem, 4vw, 3rem);
+    margin-top: clamp(3rem, 5vw, 4rem);
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .tool-category {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 2.5rem;
+    padding: clamp(2rem, 4vw, 2.5rem);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    margin-bottom: 2rem;
 }
 
 .tool-category:hover {
@@ -2423,7 +2666,7 @@ footer p {
 .tool-category h3 {
     color: var(--primary);
     font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -2452,7 +2695,7 @@ footer p {
 .tools-list li {
     color: var(--foreground);
     font-size: 1.1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     padding: 0.8rem 1rem;
     position: relative;
     font-family: var(--font-secondary);
@@ -2516,7 +2759,7 @@ footer p {
 .lang-category h3 {
     color: var(--primary);
     font-size: 1.7rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
     gap: 1rem;

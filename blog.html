@@ -3,53 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | 0xjboor</title>
+    <meta name="description" content="Read Anas Al-Jboor's blog posts about technology, security, design, and personal thoughts in Arabic.">
+    <meta name="keywords" content="blog, Anas Al-Jboor, Arabic blog, technology, security, design">
+    <meta name="author" content="Anas Al-Jboor">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blog | Anas Al-Jboor">
+    <meta property="og:description" content="Read Anas Al-Jboor's blog posts about technology, security, design, and personal thoughts in Arabic.">
+    <meta property="og:type" content="website">
+    <title>Blog | Anas Al-Jboor</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Anas Al-Jboor's Blog",
+      "description": "Personal blog featuring thoughts and insights in Arabic",
+      "author": {
+        "@type": "Person",
+        "name": "Anas Al-Jboor"
+      }
+    }
+    </script>
 </head>
 <body>
-    <nav class="main-nav">
-        <a href="index.html" class="logo">&lt;/<span class="typed-text"></span>&gt;</a>
+    <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="logo" aria-label="Home">&lt;/<span class="typed-text"></span>&gt;</a>
         <div class="nav-links">
             <a href="index.html">HOME</a>
-            <a href="blog.html">BLOG</a>
+            <a href="blog.html" aria-current="page">BLOG</a>
             <a href="contact.html">CONTACT</a>
         </div>
-        <div class="hamburger">
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
-        </div>
+        </button>
     </nav>
 
-    <div class="blog-section">
-        <video autoplay loop muted playsinline id="matrix-bg">
-            <source src="matrix.webm" type="video/webm">
-        </video>
-        <div class="blog-intro">
-            <h1 class="blog-title">مدونـتي الشخصية</h1>
-            <div class="blog-content-rtl">
-                <p class="blog-description blog-description-ltr animate-on-scroll">
-                    هنا أكتب مقالات واقتباسات تروي جزءاً من نفسي وتعبر عن بعض من أفكاري
-                </p>
-                <p class="blog-description animate-on-scroll">
-                    كل ذلك <span class="highlight">باللغة العربية</span>، بعيداً عن لغة الموقع التي تركز على الإنجليزية، لتبقى هذه المساحة متنفساً لروح هويتي في عالم رقمي يتحدث لغة أخرى
-                </p>
+    <main>
+        <section class="blog-section" aria-labelledby="blog-title">
+            <video autoplay loop muted playsinline id="matrix-bg" aria-hidden="true">
+                <source src="matrix.webm" type="video/webm">
+                <source src="matrix.mp4" type="video/mp4">
+            </video>
+            <div class="blog-intro">
+                <h1 id="blog-title" class="blog-title" lang="ar">مدونـتي الشخصية</h1>
+                <div class="blog-content-rtl" lang="ar">
+                    <p class="blog-description blog-description-ltr animate-on-scroll">
+                        هنا أشارك مقالاتٍ واقتباسات تعكس جزءاً من ذاتي وتعبّر عن أفكاري.
+                    </p>
+                    <p class="blog-description animate-on-scroll">
+                        كل ذلك <span class="highlight">باللغة العربية</span>، بعيداً عن لغة الموقع التي تركز على الإنجليزية، لتظل هذه المساحة متنفساً لروح هويتي في عالم رقمي يتحدث بلغة مختلفة.
+                    </p>
+                </div>
             </div>
-        </div>
-        
-        <p class="archived animate-on-scroll">مؤرشفة مؤقتاً...</p>
-    </div>
+            
+            <p class="archived animate-on-scroll" lang="ar">مؤرشفة مؤقتاً...</p>
+        </section>
+    </main>
 
     <footer>
         <div class="footer-content">
-            <div class="social-links animate-on-scroll">
-                <a href="https://github.com/0xdowz" class="btn"><i class="fab fa-github"></i></a>
-                <a href="https://twitter.com/0xjboor" class="btn"><i class="fab fa-twitter"></i></a>
-                <a href="https://instagram.com/jbo0r" class="btn"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:anasamuniraljboor@gmail.com" class="btn"><i class="fas fa-envelope"></i></a>
+            <div class="social-links animate-on-scroll" aria-label="Social media links">
+                <a href="https://github.com/0xdowz" class="btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://twitter.com/0xjboor" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://instagram.com/jbo0r" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:anasamuniraljboor@gmail.com" class="btn" aria-label="Email me">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
             </div>
-            <p class="animate-on-scroll">&copy; 2025. Made with ❤️</p>
+            <p class="animate-on-scroll">&copy; 2025. Made With ❤️</p>
         </div>
     </footer>
 
