@@ -13,6 +13,7 @@
     <meta property="og:type" content="website">
     <title>Contact | Anas Al-Jboor</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notification.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="preconnect" href="https://www.google.com">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -44,24 +45,24 @@
         <section class="contact-section" aria-label="Contact form">
             <video autoplay loop muted playsinline id="matrix-bg" aria-hidden="true">
                 <source src="matrix.webm" type="video/webm">
+                <source src="matrix.mp4" type="video/mp4">
             </video>
             <div class="container">
-                <h1>Get in Touch</h1>
+                <h1 class="animate-on-scroll">Get in Touch</h1>
                 <div class="contact-content">
                     <div class="contact-info glass-effect">
-                        <h2>Let's Connect</h2>
-                        <p>Feel free to reach out for collaborations, questions, or just to say hello! I'll get back to you as soon as possible.</p>
-                        <div class="social-links" aria-label="Social media links">
-                            <a href="https://github.com/0xdowz" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                        <h2 class="animate-on-scroll">Let's Connect</h2>
+                        <p class="animate-on-scroll">Feel free to reach out for collaborations, questions, or just to say hello! I'll get back to you as soon as possible.</p>
+                        <div class="social-links animate-on-scroll" aria-label="Social media links">
+                            <a href="https://github.com/0xdowz" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="btn">
                                 <i class="fab fa-github" aria-hidden="true"></i>
+                                <a href="https://x.com/0xjboor" class="btn" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter) Profile">
+                                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="https://twitter.com/0xjboor" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
-                                <i class="fab fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="https://instagram.com/jbo0r" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                            <a href="https://instagram.com/jbo0r" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" class="btn">
                                 <i class="fab fa-instagram" aria-hidden="true"></i>
                             </a>
-                            <a href="mailto:anasamuniraljboor@gmail.com" aria-label="Email me">
+                            <a href="mailto:anasamuniraljboor@gmail.com" aria-label="Email me" class="btn">
                                 <i class="fas fa-envelope" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -70,36 +71,41 @@
                         <form id="messageForm" action="https://formspree.io/f/xbldbdbd" method="POST" onsubmit="handleFormSubmit(event)" aria-label="Contact form">
                             <input type="hidden" name="_subject" value="New Contact Form Submission">
                             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-                            <div class="form-group">
+                            <div class="form-group animate-on-scroll">
                                 <label for="name">Name</label>
                                 <input type="text" id="name" name="name" required 
                                     pattern="[A-Za-z0-9\s]{2,50}" 
                                     title="Name must be between 2 and 50 characters and contain only letters, numbers and spaces"
+                                    placeholder="Enter your name"
                                     aria-required="true">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group animate-on-scroll">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" required 
                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" 
                                     title="Please enter a valid email address"
+                                    placeholder="Enter your email address"
                                     aria-required="true">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group animate-on-scroll">
                                 <label for="subject">Subject</label>
                                 <input type="text" id="subject" name="subject" required 
                                     maxlength="100" 
                                     title="Subject must not exceed 100 characters"
+                                    placeholder="What's this about?"
                                     aria-required="true">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group animate-on-scroll">
                                 <label for="message">Message</label>
                                 <textarea id="message" name="message" required 
                                     minlength="10" maxlength="1000" 
                                     title="Message must be between 10 and 1000 characters"
+                                    placeholder="Write your message here..."
                                     aria-required="true"></textarea>
                             </div>
-                            <div id="formStatus" class="form-status" role="alert" aria-live="polite" style="display: none;"></div>
-                            <button type="submit" class="submit-btn btn">Send Message <i class="fas fa-paper-plane" aria-hidden="true"></i></button>
+                            <button type="submit" class="btn animate-on-scroll">
+                                Send Message <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -113,6 +119,9 @@
         </div>
     </footer>
 
+    <div class="notification-container" aria-live="polite"></div>
+
+    <script src="notification.js"></script>
     <script src="script.js"></script>
     <script src="noise.js"></script>
 </body>

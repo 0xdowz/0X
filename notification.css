@@ -1,0 +1,99 @@
+/* Notification Styles */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.notification {
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    pointer-events: all;
+    max-width: 400px;
+    position: relative;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 4px 20px rgba(100, 255, 218, 0.1);
+}
+
+.notification.error {
+    border-color: rgba(255, 100, 100, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 100, 100, 0.1);
+}
+
+.notification i {
+    font-size: 1.5rem;
+}
+
+.notification.success i {
+    color: var(--primary);
+}
+
+.notification.error i {
+    color: #ff6464;
+}
+
+.notification-message {
+    font-family: var(--font-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.notification-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    pointer-events: all;
+}
+
+.notification-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .notification-container {
+        top: auto;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+    }
+
+    .notification {
+        margin: 0 auto;
+        transform: translateY(120%);
+        text-align: center;
+    }
+
+    .notification.show {
+        transform: translateY(0);
+    }
+}

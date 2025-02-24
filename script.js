@@ -1,54 +1,17 @@
-// Notification System
-class NotificationSystem {
-    constructor() {
-        this.container = document.createElement('div');
-        this.container.className = 'notification-container';
-        document.body.appendChild(this.container);
-    }
-
-    show(message, type = 'success') {
-        // Clear any existing notifications first
-        while (this.container.firstChild) {
-            this.container.firstChild.remove();
-        }
-
-        const notification = document.createElement('div');
-        notification.className = `notification ${type} glass-effect`;
-        notification.setAttribute('role', 'alert');
-        notification.innerHTML = `
-            <div class="notification-content">
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        
-        this.container.appendChild(notification);
-        
-        // Trigger fade-in
-        setTimeout(() => notification.classList.add('show'), 10);
-        
-        // Auto-remove after delay
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => notification.remove(), 300);
-        }, 5000);
-    }
-}
+// Notification System is now imported from notification.js
 
 // Contact Form Handler with Enhanced Security and Validation
 const handleFormSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
     const submitBtn = form.querySelector('button[type="submit"]');
-    const notifications = new NotificationSystem();
-    const formStatus = document.getElementById('formStatus');
     
     // Enhanced client-side validation with sanitization
     const formData = new FormData(form);
-    const email = formData.get('email').trim();
-    const message = formData.get('message').trim();
-    const name = formData.get('name').trim();
-    const subject = formData.get('subject').trim();
+    const email = formData.get('email')?.trim() || '';
+    const message = formData.get('message')?.trim() || '';
+    const name = formData.get('name')?.trim() || '';
+    const subject = formData.get('subject')?.trim() || '';
 
     // Input sanitization and validation
     const sanitizeInput = (input) => {
@@ -61,30 +24,6 @@ const handleFormSubmit = async (event) => {
     formData.set('message', sanitizeInput(message));
     formData.set('name', sanitizeInput(name));
     formData.set('subject', sanitizeInput(subject));
-    
-    // Enhanced validation
-    if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) {
-        notifications.show('عذراً! يرجى إدخال بريد إلكتروني صحيح', 'error');
-        return;
-    }
-    
-    if (message.length < 10) {
-        notifications.show('عذراً! يجب أن تكون الرسالة 10 أحرف على الأقل', 'error');
-        return;
-    }
-    
-    // Check for potential spam patterns
-    const spamPatterns = [
-        /\[url=/i,
-        /\[link=/i,
-        /http:\/\/\S+/i,
-        /https:\/\/\S+/i
-    ];
-    
-    if (spamPatterns.some(pattern => pattern.test(message))) {
-        notifications.show('عذراً! يرجى إزالة أي روابط من رسالتك', 'error');
-        return;
-    }
     
     // Show loading state with enhanced UI feedback
     submitBtn.disabled = true;
@@ -106,30 +45,14 @@ const handleFormSubmit = async (event) => {
         });
 
         if (response.ok) {
-            // Show success message in Arabic
-            notifications.show('تم الإرسال بنجاح!', 'success');
+            window.notificationSystem.show('Message sent successfully!');
             form.reset();
         } else {
-            // Show error message in Arabic
-            notifications.show('أوبس! حدث خطأ ما، يرجى المحاولة لاحقًا.', 'error');
+            throw new Error('Server error');
         }
     } catch (error) {
-        // Show error message in Arabic for network/other errors
-        notifications.show('أوبس! حدث خطأ ما، يرجى المحاولة لاحقًا.', 'error');
         console.error('Form submission error:', error);
-    } finally {
-        // Reset button state
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send Message';
-        submitBtn.classList.remove('loading');
-    }
-    
-    try {
-        const data = await response.json().catch(() => null);
-        throw new Error(data?.message || 'Server responded with an error');
-    } catch (error) {
-        notifications.show('Oops! Something went wrong. Please try again. ❌', 'error');
-        console.error('Submission error:', error);
+        window.notificationSystem.show('Failed to send message. Please try again later.');
     } finally {
         // Reset button state with smooth transition
         submitBtn.classList.remove('loading');
