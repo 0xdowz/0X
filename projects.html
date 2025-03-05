@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="Favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Anas Al-Jboor's projects in web development, design, and security.">
+    <meta name="keywords" content="projects, portfolio, Anas Al-Jboor, web development, security, design">
+    <meta name="author" content="Anas Al-Jboor">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Projects | Anas Al-Jboor">
+    <meta property="og:description" content="Explore Anas Al-Jboor's projects in web development, design, and security.">
+    <meta property="og:type" content="website">
+    <title>Projects | Anas Al-Jboor</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-filters.css">
+    <link rel="stylesheet" href="project-card-enhancements.css">
+    <link rel="stylesheet" href="project-card-animations.css">
+    <link rel="stylesheet" href="project-micro-interactions.css">
+    <link rel="stylesheet" href="project-image-effects.css">
+    <link rel="stylesheet" href="project-card-refined-effects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Anas Al-Jboor's Projects",
+      "description": "Showcase of Anas Al-Jboor's projects in web development, design, and security"
+    }
+    </script>
+</head>
+<body>
+    <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="logo" aria-label="Home">&lt;/<span class="typed-text"></span>&gt;</a>
+        <div class="nav-links">
+            <a href="index.html">HOME</a>
+            <a href="blog.html">BLOG</a>
+            <a href="projects.html" aria-current="page">PROJECTS</a>
+            <a href="contact.html">CONTACT</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <main>
+        <section class="projects-section" aria-labelledby="projects-title">
+            <video autoplay loop muted playsinline id="matrix-bg" aria-hidden="true">
+                <source src="matrix.webm" type="video/webm">
+                <source src="matrix.mp4" type="video/mp4">
+            </video>
+            <div class="container">
+                <h1 id="projects-title" class="animate-on-scroll">My Projects</h1>
+                <p class="section-subtitle animate-on-scroll">A showcase of my creative work, technical skills, and passion projects.</p>
+                
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card animate-on-scroll" data-category="security">
+                        <div class="project-image-container">
+                            <img src="images/carbon.PNG" alt="Secure Authentication System" class="project-image">
+                            <div class="project-image-overlay">
+                                <p>web security scanner</p>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>AWS Enterprise Scanner 🚀🔒</h3>
+                            <p class="project-description">A next-generation web security scanner with advanced threat detection capabilities and real-time protection. Leveraging AI-powered anomaly detection algorithms, it identifies zero-day vulnerabilities and sophisticated attack patterns that traditional scanners miss. The system provides comprehensive vulnerability assessments with actionable remediation steps, making security accessible for teams of all sizes. 💻✨</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card animate-on-scroll" data-category="web-dev">
+                        <div class="project-image-container">
+                            <img src="images/site.png" alt="Data Visualization Dashboard" class="project-image">
+                            <div class="project-image-overlay">
+                                <p>This Site</p>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Portfolio & Data Visualization Suite</h3>
+                            <p class="project-description">A sophisticated data visualization platform built with modern web technologies. This responsive dashboard transforms complex datasets into intuitive, interactive visualizations with real-time filtering capabilities. Features include customizable chart components, data export functionality, and a powerful analytics engine that helps businesses derive actionable insights from their data.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag"><i class="fab fa-react"></i> React</span>
+                                <span class="tech-tag"><i class="fas fa-chart-line"></i> D3.js</span>
+                                <span class="tech-tag"><i class="fab fa-sass"></i> SASS</span>
+                                <span class="tech-tag"><i class="fas fa-server"></i> Express</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card animate-on-scroll" data-category="web-dev">
+                        <div class="project-image-container">
+                            <img src="images/azkar.png" alt="E-Commerce Platform" class="project-image">
+                            <div class="project-image-overlay">
+                                <p>Web Extension</p>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Azkar Browser Extension</h3>
+                            <p class="project-description">A feature-rich browser extension that enhances productivity and spiritual well-being. This extension integrates seamlessly with your browsing experience, providing timely reminders, customizable notifications, and a beautiful interface. Built with performance in mind, it consumes minimal resources while offering maximum functionality and an exceptional user experience.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag"><i class="fab fa-php"></i> PHP</span>
+                                <span class="tech-tag"><i class="fab fa-laravel"></i> Laravel</span>
+                                <span class="tech-tag"><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                                <span class="tech-tag"><i class="fas fa-credit-card"></i> Stripe</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-card animate-on-scroll" data-category="ai">
+                        <div class="project-image-container">
+                            <img src="images/Discord.png" alt="AI-Powered Content Generator" class="project-image">
+                            <div class="project-image-overlay">
+                                <p>DDoS-Attack</p>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Neural Network Content Generator</h3>
+                            <p class="project-description">An advanced AI system that creates high-quality, contextually relevant content across multiple formats. Powered by state-of-the-art neural networks, this application generates articles, marketing copy, and social media posts that are virtually indistinguishable from human-written content. The platform includes customization options, tone adjustment, and industry-specific training to ensure outputs match your brand voice perfectly.</p>
+                            <div class="project-tech-stack">
+                                <span class="tech-tag"><i class="fab fa-python"></i> Python</span>
+                                <span class="tech-tag"><i class="fas fa-brain"></i> TensorFlow</span>
+                                <span class="tech-tag"><i class="fab fa-vuejs"></i> Vue.js</span>
+                                <span class="tech-tag"><i class="fas fa-cloud"></i> AWS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
+                                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links animate-on-scroll" aria-label="Social media links">
+                <a href="https://github.com/0xdowz" class="btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                </a>
+                <a href="https://x.com/0xjboor" class="btn" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter) Profile">
+                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                </a>
+                <a href="https://instagram.com/jbo0r" class="btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+                <a href="mailto:anasamuniraljboor@gmail.com" class="btn" aria-label="Email me">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                </a>
+            </div>
+            <p class="animate-on-scroll">&copy; 2025. Made With ❤️</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="noise.js"></script>
+    <script src="project-effects-enhanced.js"></script>
+    <script src="project-card-advanced-effects.js"></script>
+    <script src="project-card-hover-effects.js"></script>
+    <script src="project-card-refined-interactions.js"></script>
+</body>
+</html>

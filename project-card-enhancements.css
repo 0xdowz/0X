@@ -1,0 +1,326 @@
+/* Enhanced Project Card Styling */
+
+/* Standardize card dimensions for consistency */
+.project-card {
+    height: 620px; /* Slightly increased height for better content spacing */
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    background: linear-gradient(135deg, rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.95));
+}
+
+/* Add subtle glass morphism effect */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent);
+    border-radius: var(--card-border-radius);
+    z-index: 0;
+    opacity: 0.5;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover::before {
+    opacity: 0.8;
+}
+
+/* Enhanced image container with consistent dimensions */
+.project-image-container {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* Improved image quality and transitions */
+.project-image {
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: center;
+    will-change: transform, filter;
+    image-rendering: high-quality;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Enhanced image hover effect with smoother transition */
+.project-card:hover .project-image {
+    transform: scale(1.15);
+    filter: brightness(1.15) contrast(1.25) saturate(1.25);
+}
+
+/* Improved image overlay with better readability */
+.project-image-overlay {
+    background: linear-gradient(to bottom, rgba(10, 25, 47, 0.5), rgba(10, 25, 47, 0.9));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(100, 255, 218, 0.2);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+.project-image-overlay p {
+    font-size: 1.8rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(15px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-image-overlay p {
+    transform: translateY(0) scale(1);
+    text-shadow: 0 2px 15px rgba(100, 255, 218, 0.5);
+}
+
+/* Enhanced project content styling */
+.project-content {
+    padding: 1.8rem;
+    position: relative;
+    z-index: 1;
+    height: calc(100% - 280px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Improved project title styling */
+.project-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    position: relative;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.project-content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 2px;
+    box-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+}
+
+.project-card:hover .project-content h3::after {
+    width: 80%;
+    box-shadow: 0 0 12px rgba(100, 255, 218, 0.7);
+}
+
+/* Enhanced project description styling */
+.project-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--foreground); /* Changed from var(--secondary) to improve visibility */
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 1rem 0.8rem 1.2rem;
+    border-left: 2px solid rgba(100, 255, 218, 0.2);
+    transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    text-align: justify;
+    opacity: 1; /* Ensure visibility */
+    visibility: visible; /* Ensure visibility */
+    display: block; /* Ensure display */
+    position: relative;
+    background: rgba(10, 25, 47, 0.3);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Removed scrollbar styling as it's no longer needed */
+
+.project-card:hover .project-description {
+    border-left: 2px solid rgba(100, 255, 218, 0.6);
+    color: var(--foreground);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 5px rgba(100, 255, 218, 0.2);
+    /* Removed transform to keep description in place */
+}
+
+/* Enhanced tech stack styling */
+.project-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tech-tag {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(100, 255, 218, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    color: var(--secondary);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tech-tag i {
+    font-size: 0.9rem;
+    color: var(--primary);
+}
+
+.tech-tag:hover {
+    background: rgba(100, 255, 218, 0.15);
+    transform: translateY(-3px) scale(1.05);
+    color: var(--primary);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 0 8px rgba(100, 255, 218, 0.3);
+}
+
+/* Enhanced project links styling */
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+.project-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    background: rgba(100, 255, 218, 0.05);
+    color: var(--secondary);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.project-link i {
+    font-size: 1rem;
+    color: var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1), 0 0 10px rgba(100, 255, 218, 0.2);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.project-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Enhanced filter buttons */
+.filter-btn {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 30px;
+    background: rgba(100, 255, 218, 0.05);
+    color: var(--secondary);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+    transition: left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+}
+
+.filter-btn:hover {
+    color: var(--primary);
+    border-color: rgba(100, 255, 218, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 10px rgba(100, 255, 218, 0.2);
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn.active {
+    background: rgba(100, 255, 218, 0.15);
+    color: var(--primary);
+    border-color: rgba(100, 255, 218, 0.6);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+    font-weight: 600;
+}
+
+/* Enhanced project grid layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-card {
+        height: auto;
+        min-height: 600px;
+    }
+    
+    .project-image-container {
+        height: 220px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Enhanced animations */
+@keyframes floatAnimation {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+.project-card:hover .tech-tag {
+    animation: floatAnimation 3s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.1s);
+}
+
+/* Add subtle shimmer effect to cards */
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(100, 255, 218, 0.03), transparent);
+    transform: rotate(30deg);
+    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.project-card:hover::after {
+    transform: rotate(30deg) translate(10%, 10%);
+}

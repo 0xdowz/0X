@@ -1,83 +1,89 @@
 // Notification System is now imported from notification.js
 
 // Contact Form Handler with Enhanced Security and Validation
-const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const submitBtn = form.querySelector('button[type="submit"]');
-    
-    // Enhanced client-side validation with sanitization
-    const formData = new FormData(form);
-    const email = formData.get('email')?.trim() || '';
-    const message = formData.get('message')?.trim() || '';
-    const name = formData.get('name')?.trim() || '';
-    const subject = formData.get('subject')?.trim() || '';
-
-    // Input sanitization and validation
-    const sanitizeInput = (input) => {
-        return input
-            .replace(/[<>]/g, '') // Remove potential HTML tags
-            .replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
-    };
-
-    formData.set('email', sanitizeInput(email));
-    formData.set('message', sanitizeInput(message));
-    formData.set('name', sanitizeInput(name));
-    formData.set('subject', sanitizeInput(subject));
-    
-    // Show loading state with enhanced UI feedback
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.classList.add('loading');
-    
-    try {
-        // Add timestamp and form metadata
-        formData.append('submitted_at', new Date().toISOString());
-        formData.append('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+if (typeof handleFormSubmit === 'undefined') {
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
         
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        });
+        // Enhanced client-side validation with sanitization
+        const formData = new FormData(form);
+        const email = formData.get('email')?.trim() || '';
+        const message = formData.get('message')?.trim() || '';
+        const name = formData.get('name')?.trim() || '';
+        const subject = formData.get('subject')?.trim() || '';
 
-        if (response.ok) {
-            window.notificationSystem.show('Message sent successfully!');
-            form.reset();
-        } else {
-            throw new Error('Server error');
+        // Input sanitization and validation
+        const sanitizeInput = (input) => {
+            return input
+                .replace(/[<>]/g, '') // Remove potential HTML tags
+                .replace(/[\u0000-\u001F\u007F-\u009F]/g, ''); // Remove control characters
+        };
+
+        formData.set('email', sanitizeInput(email));
+        formData.set('message', sanitizeInput(message));
+        formData.set('name', sanitizeInput(name));
+        formData.set('subject', sanitizeInput(subject));
+        
+        // Show loading state with enhanced UI feedback
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.classList.add('loading');
+        
+        try {
+            // Add timestamp and form metadata
+            formData.append('submitted_at', new Date().toISOString());
+            formData.append('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone);
+            
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+
+            if (response.ok) {
+                window.notificationSystem.show('Message sent successfully!');
+                form.reset();
+            } else {
+                throw new Error('Server error');
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            window.notificationSystem.show('Failed to send message. Please try again later.');
+        } finally {
+            // Reset button state with smooth transition
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
         }
-    } catch (error) {
-        console.error('Form submission error:', error);
-        window.notificationSystem.show('Failed to send message. Please try again later.');
-    } finally {
-        // Reset button state with smooth transition
-        submitBtn.classList.remove('loading');
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-    }
-};
+    };
+    window.handleFormSubmit = handleFormSubmit;
+}
 
 // Optimized scroll animation with performance improvements
-const observeElements = () => {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target); // Stop observing once animation is triggered
-            }
+if (typeof observeElements === 'undefined') {
+    const observeElements = () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target); // Stop observing once animation is triggered
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '50px' // Preload animations before elements enter viewport
         });
-    }, { 
-        threshold: 0.1,
-        rootMargin: '50px' // Preload animations before elements enter viewport
-    });
 
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
-};
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        elements.forEach(el => observer.observe(el));
+    };
+    window.observeElements = observeElements;
+}
 
 // Optimized navbar scroll handling with throttling
 const handleNavbar = () => {
@@ -302,29 +308,6 @@ const toggleMenu = () => {
         }
     }, 50);
 };
-
-// Event delegation for menu-related clicks
-document.addEventListener('click', (e) => {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (e.target.closest('.hamburger')) {
-        toggleMenu();
-    } else if (isMenuOpen && !e.target.closest('.nav-links')) {
-        toggleMenu();
-    } else if (e.target.closest('.nav-links a')) {
-        toggleMenu();
-    }
-}, { passive: true });
-
-// Initialize hamburger menu
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    if (hamburger) {
-        hamburger.addEventListener('click', toggleMenu);
-    }
-});
-
 
 // Page Visibility Handler
 const handleVisibilityChange = () => {

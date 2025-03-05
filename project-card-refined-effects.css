@@ -1,0 +1,253 @@
+/* Project Card Refined Effects - Additional enhancements and polish */
+
+/* Enhanced card hover transitions with smoother animations */
+.project-card {
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+                border-color 0.6s ease;
+    will-change: transform, box-shadow;
+}
+
+/* Improved card hover state with more sophisticated shadow */
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 30px 70px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(100, 255, 218, 0.7) inset,
+        0 0 50px rgba(100, 255, 218, 0.3),
+        0 0 150px rgba(100, 255, 218, 0.15);
+}
+
+/* Enhanced image reveal with more refined animation */
+@keyframes refinedImageReveal {
+    0% { 
+        transform: scale(1.25); 
+        filter: blur(12px) brightness(0.6) saturate(0.7); 
+        opacity: 0.6;
+    }
+    30% {
+        filter: blur(6px) brightness(0.75) saturate(0.85);
+        opacity: 0.8;
+    }
+    60% {
+        filter: blur(3px) brightness(0.9) saturate(0.95);
+        opacity: 0.9;
+    }
+    100% { 
+        transform: scale(1); 
+        filter: blur(0) brightness(1) saturate(1); 
+        opacity: 1;
+    }
+}
+
+.image-refined-reveal {
+    animation: refinedImageReveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Enhanced shimmer effect with better visibility */
+@keyframes refinedShimmer {
+    0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+    25% { opacity: 0.5; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0.5; }
+    100% { transform: translateX(150%) rotate(25deg); opacity: 0; }
+}
+
+.project-card::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 255, 218, 0.08),
+        rgba(100, 255, 218, 0.12),
+        rgba(100, 255, 218, 0.08),
+        transparent
+    );
+    animation: refinedShimmer 8s infinite;
+}
+
+/* Enhanced title hover effect with more sophisticated underline */
+@keyframes titleGlow {
+    0% { text-shadow: 0 0 4px rgba(100, 255, 218, 0.2); }
+    50% { text-shadow: 0 0 10px rgba(100, 255, 218, 0.4); }
+    100% { text-shadow: 0 0 4px rgba(100, 255, 218, 0.2); }
+}
+
+.project-content h3 {
+    animation: titleGlow 3s infinite;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    color: var(--primary);
+}
+
+.project-content h3::after {
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary), 
+        rgba(100, 255, 218, 0.7),
+        rgba(100, 255, 218, 0.1)
+    );
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.4);
+}
+
+/* Enhanced tech tag animations with staggered float effect */
+@keyframes techTagFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+.project-card:hover .tech-tag {
+    animation: techTagFloat 3s infinite;
+}
+
+.project-card:hover .tech-tag:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.project-card:hover .tech-tag:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.project-card:hover .tech-tag:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.project-card:hover .tech-tag:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* Enhanced tech tag hover with improved glow effect */
+.tech-tag:hover {
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.25), 
+        0 0 15px rgba(100, 255, 218, 0.5),
+        0 0 5px rgba(100, 255, 218, 0.3) inset;
+    letter-spacing: 0.05em;
+}
+
+/* Enhanced project links with magnetic effect */
+@keyframes linkPulse {
+    0% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 10px rgba(100, 255, 218, 0.2); }
+    50% { box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2), 0 0 20px rgba(100, 255, 218, 0.4); }
+    100% { box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 10px rgba(100, 255, 218, 0.2); }
+}
+
+.project-link:hover {
+    animation: linkPulse 2s infinite;
+    transform: translateY(-7px);
+    background: rgba(100, 255, 218, 0.15);
+}
+
+.project-link:hover i {
+    animation: linkIconPulse 1s infinite alternate;
+}
+
+@keyframes linkIconPulse {
+    0% { transform: translateX(0) scale(1); }
+    100% { transform: translateX(5px) scale(1.2); }
+}
+
+/* Enhanced description with improved border effect and typography */
+@keyframes borderPulse {
+    0% { border-left-color: rgba(100, 255, 218, 0.5); }
+    50% { border-left-color: rgba(100, 255, 218, 0.9); }
+    100% { border-left-color: rgba(100, 255, 218, 0.5); }
+}
+
+/* Base styling for project descriptions to ensure visibility */
+.project-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--foreground) !important;
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(100, 255, 218, 0.3);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Removed max-height and overflow properties to show full content */
+    text-align: justify;
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(90deg, rgba(100, 255, 218, 0.03), transparent);
+    border-radius: 0 4px 4px 0;
+}
+
+/* Removed scrollbar styling as it's no longer needed */
+
+/* Add a subtle fade-in effect for project descriptions on hover */
+@keyframes descriptionFadeIn {
+    0% { opacity: 0.85; transform: translateX(0); }
+    100% { opacity: 1; transform: translateX(8px); }
+}
+
+.project-card:hover .project-description {
+    animation: borderPulse 3s infinite, descriptionFadeIn 0.5s forwards;
+    border-left-width: 3px;
+    padding-left: 1.2rem;
+    color: var(--foreground);
+    background: linear-gradient(90deg, rgba(100, 255, 218, 0.05), transparent);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced particle effects with more sophisticated animations */
+@keyframes refinedParticleAnimation {
+    0% { 
+        opacity: 0; 
+        transform: scale(0) translateY(0) rotate(0deg); 
+    }
+    20% { 
+        opacity: 0.9; 
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.2) translateY(-40px) rotate(45deg); 
+    }
+    80% { 
+        opacity: 0.3; 
+    }
+    100% { 
+        opacity: 0; 
+        transform: scale(0.6) translateY(-80px) rotate(90deg); 
+    }
+}
+
+/* Enhanced background pulse with more subtle gradient */
+@keyframes refinedPulseAnimation {
+    0% { opacity: 0; transform: scale(0.8); }
+    50% { opacity: 0.4; transform: scale(1.15); }
+    100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Enhanced image container with subtle border animation */
+@keyframes borderGlow {
+    0% { border-bottom-color: rgba(100, 255, 218, 0.3); }
+    50% { border-bottom-color: rgba(100, 255, 218, 0.7); }
+    100% { border-bottom-color: rgba(100, 255, 218, 0.3); }
+}
+
+.project-card:hover .project-image-container {
+    animation: borderGlow 3s infinite;
+    border-bottom-width: 2px;
+}
+
+/* Enhanced accessibility focus states */
+.project-link:focus,
+.filter-btn:focus {
+    outline: 3px solid rgba(100, 255, 218, 0.6);
+    outline-offset: 3px;
+}
+
+/* Enhanced filter button active state */
+.filter-btn.active {
+    background: rgba(100, 255, 218, 0.2);
+    box-shadow: 
+        0 0 25px rgba(100, 255, 218, 0.5), 
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        0 0 5px rgba(100, 255, 218, 0.3) inset;
+    letter-spacing: 0.08em;
+    transform: translateY(-3px);
+}

@@ -1,0 +1,181 @@
+.project-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    color: var(--secondary);
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+    transition: left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.filter-btn:hover {
+    color: var(--primary);
+    border-color: rgba(100, 255, 218, 0.5);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 10px rgba(100, 255, 218, 0.2);
+}
+
+.filter-btn:hover::before {
+    left: 100%;
+}
+
+.filter-btn.active {
+    background: rgba(100, 255, 218, 0.15);
+    color: var(--primary);
+    border-color: rgba(100, 255, 218, 0.6);
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.3);
+    font-weight: 600;
+}
+
+/* Enhanced project card animations */
+.project-card {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                box-shadow 0.6s cubic-bezier(0.22, 1, 0.36, 1), 
+                border-color 0.3s ease;
+    transform-origin: center;
+    height: 600px; /* Standardize card height */
+}
+
+.project-image-container {
+    height: 250px; /* Standardize image container height */
+    overflow: hidden;
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
+}
+
+/* Improved hover effects */
+.project-card:hover .project-image {
+    transform: scale(1.12);
+    filter: brightness(1.1) contrast(1.2) saturate(1.2);
+}
+
+/* Improved project card shadow */
+.project-card:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(100, 255, 218, 0.5) inset,
+                0 0 30px rgba(100, 255, 218, 0.3),
+                0 0 100px rgba(100, 255, 218, 0.1);
+}
+
+/* Enhanced tech tags */
+.tech-tag {
+    padding: 0.5rem 0.9rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tech-tag:hover {
+    background: rgba(100, 255, 218, 0.15);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15), 0 0 8px rgba(100, 255, 218, 0.3);
+    border-color: rgba(100, 255, 218, 0.5);
+}
+
+/* Project links enhancement */
+.project-link {
+    position: relative;
+    overflow: hidden;
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+}
+
+.project-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 255, 218, 0.1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+}
+
+.project-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Filtered projects animation */
+.project-card.filtered-out {
+    opacity: 0.3;
+    transform: scale(0.95);
+    filter: grayscale(0.8) blur(2px);
+    pointer-events: none;
+}
+
+/* Animation for showing filtered projects */
+@keyframes showFilteredProject {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.project-card.filtered-in {
+    animation: showFilteredProject 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-filters {
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .project-card {
+        height: auto;
+    }
+    
+    .project-image-container {
+        height: 200px;
+    }
+}

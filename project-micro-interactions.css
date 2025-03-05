@@ -1,0 +1,284 @@
+/* Project Card Micro-Interactions and Enhanced Details */
+
+/* Enhanced card hover state with subtle depth effect */
+.project-card {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.5s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(100, 255, 218, 0.6) inset,
+                0 0 40px rgba(100, 255, 218, 0.25),
+                0 0 120px rgba(100, 255, 218, 0.1);
+    border-color: rgba(100, 255, 218, 0.5);
+}
+
+/* Refined image container with subtle border glow */
+.project-image-container {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    transition: border-color 0.5s ease;
+}
+
+.project-card:hover .project-image-container {
+    border-bottom-color: rgba(100, 255, 218, 0.4);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.15) inset;
+}
+
+/* Enhanced image overlay text with improved typography */
+.project-image-overlay p {
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+    transform: translateY(15px) scale(0.95);
+    opacity: 0.85;
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-image-overlay p {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    text-shadow: 0 2px 20px rgba(100, 255, 218, 0.6), 0 0 10px rgba(100, 255, 218, 0.4);
+}
+
+/* Ensure project description maintains consistent position */
+.project-description {
+    height: auto;
+    min-height: 120px;
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100, 255, 218, 0.3) rgba(10, 25, 47, 0.1);
+}
+
+.project-description::-webkit-scrollbar {
+    width: 4px;
+}
+
+.project-description::-webkit-scrollbar-track {
+    background: rgba(10, 25, 47, 0.1);
+    border-radius: 4px;
+}
+
+.project-description::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 255, 218, 0.3);
+    border-radius: 4px;
+}
+
+/* Enhanced title with subtle text shadow and improved underline effect */
+.project-content h3 {
+    text-shadow: 0 0 1px rgba(100, 255, 218, 0.2);
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-content h3::after {
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--primary), rgba(100, 255, 218, 0.1));
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border-radius: 3px;
+}
+
+.project-card:hover .project-content h3 {
+    text-shadow: 0 0 8px rgba(100, 255, 218, 0.3);
+    transform: translateX(3px);
+}
+
+.project-card:hover .project-content h3::after {
+    width: 95%;
+    box-shadow: 0 0 15px rgba(100, 255, 218, 0.7);
+    height: 3px;
+}
+
+/* Enhanced tech tags with improved hover states */
+.tech-tag {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+    transition: left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: -1;
+}
+
+.tech-tag:hover {
+    background: rgba(100, 255, 218, 0.15);
+    transform: translateY(-5px) scale(1.08);
+    color: var(--primary);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2), 0 0 12px rgba(100, 255, 218, 0.4);
+    letter-spacing: 0.03em;
+}
+
+.tech-tag:hover::before {
+    left: 100%;
+}
+
+.tech-tag:hover i {
+    transform: scale(1.2);
+    text-shadow: 0 0 8px rgba(100, 255, 218, 0.6);
+}
+
+/* Enhanced project links with improved hover effects */
+.project-link {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), transparent);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-link:hover {
+    background: rgba(100, 255, 218, 0.12);
+    color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 15px rgba(100, 255, 218, 0.3);
+    letter-spacing: 0.02em;
+}
+
+.project-link:hover::after {
+    width: 100%;
+}
+
+.project-link:hover i {
+    transform: translateX(5px) scale(1.1);
+    text-shadow: 0 0 8px rgba(100, 255, 218, 0.6);
+}
+
+/* Enhanced description with improved hover state */
+.project-description {
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    border-left: 2.5px solid rgba(100, 255, 218, 0.2);
+    padding-left: 1rem;
+}
+
+.project-card:hover .project-description {
+    border-left-color: rgba(100, 255, 218, 0.7);
+    border-left-width: 3px;
+    /* Removed transform to keep description in place */
+    color: var(--foreground);
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Enhanced filter buttons with improved hover states */
+.filter-btn {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(-50%);
+}
+
+.filter-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 15px rgba(100, 255, 218, 0.3);
+    letter-spacing: 0.06em;
+}
+
+.filter-btn:hover::after {
+    width: 80%;
+}
+
+.filter-btn.active {
+    background: rgba(100, 255, 218, 0.18);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.4), 0 10px 20px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.06em;
+}
+
+.filter-btn.active::after {
+    width: 90%;
+    height: 2.5px;
+}
+
+/* Enhanced scrollbar for project description */
+.project-description::-webkit-scrollbar {
+    width: 5px;
+}
+
+.project-description::-webkit-scrollbar-track {
+    background: rgba(10, 25, 47, 0.6);
+    border-radius: 10px;
+}
+
+.project-description::-webkit-scrollbar-thumb {
+    background: rgba(100, 255, 218, 0.3);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.project-description::-webkit-scrollbar-thumb:hover {
+    background: rgba(100, 255, 218, 0.6);
+}
+
+/* Enhanced focus states for accessibility */
+.project-link:focus,
+.filter-btn:focus,
+.tech-tag:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.6), 0 0 15px rgba(100, 255, 218, 0.4);
+}
+
+/* Improved responsive adjustments */
+@media (max-width: 768px) {
+    .project-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+    
+    .tech-tag:hover,
+    .project-link:hover,
+    .filter-btn:hover {
+        transform: translateY(-3px);
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-card:hover,
+    .tech-tag,
+    .tech-tag:hover,
+    .project-link,
+    .project-link:hover,
+    .filter-btn,
+    .filter-btn:hover,
+    .project-image-overlay p,
+    .project-card:hover .project-image-overlay p,
+    .project-content h3,
+    .project-card:hover .project-content h3,
+    .project-description,
+    .project-card:hover .project-description {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+    }
+}
